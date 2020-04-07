@@ -1,3 +1,6 @@
+global.$ = global.jQuery = require('jquery');
+require('bootstrap');
+
 window._ = require('lodash');
 
 /**
