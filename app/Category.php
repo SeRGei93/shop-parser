@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Category extends Model
 {
@@ -19,7 +20,7 @@ class Category extends Model
     //Mutators
     public function setSlugAttribute($value)
     {
-        $this->attributes['slug'] = \Str::slug( mb_substr($this->title, 0, 40), '-');
+        $this->attributes['slug'] = Str::slug( mb_substr($this->title, 0, 40), '-');
     }
 
     public function children()

@@ -17,6 +17,7 @@
 
 	<!-- Styles -->
 	<link href="{{ mix('css/app.css') }}" rel="stylesheet">
+	@stack('styles')
 </head>
 <body>
 <div id="app">
@@ -38,7 +39,7 @@
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a class="dropdown-item" href="{{ route('admin.category.index') }}">Категории</a></li>
-							<li><a class="dropdown-item" href="#">Материалы</a></li>
+							<li><a class="dropdown-item" href="{{ route('admin.article.index') }}">Новости</a></li>
 						</ul>
 
 					</li>
@@ -58,6 +59,9 @@
 							</li>
 						@endif
 					@else
+						<li class="nav-item">
+							<a class="nav-link" href="{{ asset('/') }}">Сайт</a>
+						</li>
 						<li class="nav-item dropdown">
 							<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 								{{ Auth::user()->name }} <span class="caret"></span>
@@ -86,7 +90,8 @@
 	</main>
 </div>
 
-<!-- Scripts -->
-<script src="{{ mix('js/app.js') }}" defer></script>
+
+<script src="{{ mix('js/app.js') }}"></script>
+@stack('scripts')
 </body>
 </html>
