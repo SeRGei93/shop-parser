@@ -19,7 +19,6 @@
 				</tr>
 			</thead>
 			<tbody>
-
 				@forelse($articles as $key => $article)
 					<tr>
 						<td>{{ $article->title }}</td>
@@ -35,35 +34,25 @@
 
 						</td>
 					</tr>
-
 				@empty
-
 					<tr>
 						<td colspan="3" class="text-center"><h5>Данные отсутствуют</h5></td>
 					</tr>
-
 				@endforelse()
-
 			</tbody>
-			@if (!isset($articles))
+
 				<tfoot>
 					<tr>
 						<td colspan="3">
 							<nav aria-label="Page navigation example">
 								<ul class="pagination pull-right">
-									{{ $articles->links }}
+									{{ $articles->links() }}
 								</ul>
 							</nav>
 						</td>
 					</tr>
 				</tfoot>
-			@endif
+
 		</table>
-
-
-
-
 	</div>
-
-
 @endsection

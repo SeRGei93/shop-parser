@@ -33,6 +33,9 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<!-- Left Side Of Navbar -->
 				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('admin.index') }}">Панель состояния</a>
+					</li>
 					<li class="dropdown">
 						<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Блог <span class="caret"></span>
@@ -41,9 +44,7 @@
 							<li><a class="dropdown-item" href="{{ route('admin.category.index') }}">Категории</a></li>
 							<li><a class="dropdown-item" href="{{ route('admin.article.index') }}">Новости</a></li>
 						</ul>
-
 					</li>
-
 				</ul>
 
 				<!-- Right Side Of Navbar -->

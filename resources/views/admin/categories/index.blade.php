@@ -45,23 +45,20 @@
 				@endforelse()
 
 			</tbody>
-			@if (!isset($categories))
+
 				<tfoot>
 					<tr>
 						<td colspan="3">
 							<nav aria-label="Page navigation example">
 								<ul class="pagination pull-right">
-									{{ $categories->links }}
+									{{ $categories->links() }}
 								</ul>
 							</nav>
 						</td>
 					</tr>
 				</tfoot>
-			@endif
+
 		</table>
-
-
-
 
 	</div>
 

@@ -19,8 +19,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::resource('/article', 'ArticleController', ['as' => 'admin']);
 });
 
+
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
