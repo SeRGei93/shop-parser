@@ -1,19 +1,28 @@
 @extends('admin.layouts.app_admin')
 
 @section('content')
-	<div class="container">
-
+	<div class="container-fluid">
 		<x-admin.breadcrumb title="Создание новости" : parent="Главная" : active="Новости"></x-admin.breadcrumb>
+		<div class="row">
+			<div class="col-md-8">
+				<div class="card shadow mb-4">
+					<div class="card-header py-3">
+						<h6 class="m-0 font-weight-bold text-primary">Заполните информацию</h6>
+					</div>
+					<div class="card-body">
+						<form action="{{ route('admin.article.store') }}" method="post">
+							@csrf
+							@include('admin.articles.partials.form')
+							<input type="hidden" name="created_by" value="{{ Auth::id() }}">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 
-		<hr>
-
-		<form action="{{ route('admin.article.store') }}" method="post">
-			@csrf
-			@include('admin.articles.partials.form')
-			<input type="hidden" name="created_by" value="{{ Auth::id() }}">
-		</form>
 	</div>
 @endsection
+
 
 @push('scripts')
 	<script src="{{asset('ckeditor/ckeditor.js')}}"></script>

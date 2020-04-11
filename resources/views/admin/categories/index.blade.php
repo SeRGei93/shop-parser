@@ -1,66 +1,73 @@
 @extends('admin.layouts.app_admin')
 
 @section('content')
-	<div class="container">
+	<div class="container-fluid">
+
 		<x-admin.breadcrumb title="Список категорий" : parent="Главная" : active="Категории"></x-admin.breadcrumb>
 
-		<hr>
+		<div class="card shadow mb-4">
+			<div class="card-header py-3 d-sm-flex align-items-center justify-content-between">
+				<h6 class="m-0 font-weight-bold text-primary">Удалите или измените</h6>
+				<a href="{{ route('admin.category.create') }}" class="btn btn-primary btn-icon-split btn-sm float-right">
+					<span class="icon text-white-50">
+					  <i class="fas fa-plus"></i>
+					</span>
+					<span class="text">Добавить категорию</span>
+				</a>
+			</div>
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table table-bordered">
+						<thead>
+						<tr>
+							<th>Наименование</th>
+							<th>Публикация</th>
+							<th>Действие</th>
+						</tr>
+						</thead>
+						<tbody>
 
-		<a href="{{ route('admin.category.create') }}" class="btn btn-primary pull-right mb-2">
-			<i class="fa fa-plus-square-o"></i> Создать категорию
-		</a>
+						@forelse($categories as $key => $category)
+							<tr>
+								<td>{{ $category->title }}</td>
+								<td>{{ $category->published }}</td>
+								<td>
+									<form action="{{ route('admin.category.destroy', $category) }}" onsubmit="if(confirm('Удалить?')){ return true }else{ return false}" method="post">
+										@csrf
+										<input type="hidden" name="_method" value="DELETE">
 
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Наименование</th>
-					<th>Публикация</th>
-					<th>Действие</th>
-				</tr>
-			</thead>
-			<tbody>
+										<a href="{{ route('admin.category.edit', [$category]) }}" class="btn btn-default"><i class="fas fa-edit"></i></a>
+										<button type="submit" class="btn"><i class="fas fa-trash"></i></button>
+									</form>
 
-				@forelse($categories as $key => $category)
-					<tr>
-						<td>{{ $category->title }}</td>
-						<td>{{ $category->published }}</td>
-						<td>
-							<form action="{{ route('admin.category.destroy', $category) }}" onsubmit="if(confirm('Удалить?')){ return true }else{ return false}" method="post">
-								@csrf
-								<input type="hidden" name="_method" value="DELETE">
+								</td>
+							</tr>
 
-								<a href="{{ route('admin.category.edit', [$category]) }}" class="btn btn-default"><i class="fa fa-edit"></i></a>
-								<button type="submit" class="btn"><i class="fa fa-trash-o"></i></button>
-							</form>
+						@empty
 
-						</td>
-					</tr>
+							<tr>
+								<td colspan="3" class="text-center"><h5>Данные отсутствуют</h5></td>
+							</tr>
 
-				@empty
+						@endforelse()
 
-					<tr>
-						<td colspan="3" class="text-center"><h5>Данные отсутствуют</h5></td>
-					</tr>
+						</tbody>
 
-				@endforelse()
+						<tfoot>
+						<tr>
+							<td colspan="3">
+								<nav aria-label="Page navigation example">
+									<ul class="pagination pull-right">
+										{{ $categories->links() }}
+									</ul>
+								</nav>
+							</td>
+						</tr>
+						</tfoot>
 
-			</tbody>
-
-				<tfoot>
-					<tr>
-						<td colspan="3">
-							<nav aria-label="Page navigation example">
-								<ul class="pagination pull-right">
-									{{ $categories->links() }}
-								</ul>
-							</nav>
-						</td>
-					</tr>
-				</tfoot>
-
-		</table>
-
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
-
-
 @endsection
