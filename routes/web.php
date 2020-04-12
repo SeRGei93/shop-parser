@@ -15,8 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth']], function (){
     Route::get('/', 'DashboardController@dashboard')->name('admin.index');
-    Route::resource('/category', 'CategoryController', ['as' => 'admin']);
+    Route::resource('/article-category', 'CategoryController', ['as' => 'admin']);
     Route::resource('/article', 'ArticleController', ['as' => 'admin']);
+    Route::resource('/product-category', 'ProductCategoryController', ['as' => 'admin']);
+    Route::resource('/product', 'ProductController', ['as' => 'admin']);
 });
 
 Route::get('/', function () {
@@ -24,6 +26,7 @@ Route::get('/', function () {
 });
 
 Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
+Route::get('/parser', 'Admin\ParserController@getProducts')->name('parser');
 
 /** авторизация */
 Auth::routes();

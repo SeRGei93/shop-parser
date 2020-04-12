@@ -16,7 +16,7 @@ class CategoryController extends Controller
     public function index()
     {
         return view('admin.categories.index', [
-            'categories' => Category::paginate(10),
+            'article_categories' => Category::paginate(10),
         ]);
     }
 
@@ -26,8 +26,8 @@ class CategoryController extends Controller
     public function create()
     {
         return view('admin.categories.create', [
-            'category' => '',
-            'categories' => Category::with('children')->where('parent_id', 0)->get(),
+            'article_category' => '',
+            'article_categories' => Category::with('children')->where('parent_id', 0)->get(),
             'delimiter' => ''
         ]);
     }
@@ -40,7 +40,7 @@ class CategoryController extends Controller
     {
         Category::create($request->all());
 
-        return redirect(route('admin.category.index'));
+        return redirect(route('admin.article-category.index'));
     }
 
     /**
@@ -58,36 +58,28 @@ class CategoryController extends Controller
      * @param Category $category
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Category $category)
+    public function edit(Category $article_category)
     {
         return view('admin.categories.edit', [
-            'category' => $category,
-            'categories' => Category::with('children')->where('parent_id', 0)->get(),
+            'article_category' => $article_category,
+            'article_categories' => Category::with('children')->where('parent_id', 0)->get(),
             'delimiter' => ''
         ]);
     }
 
-    /**
-     * @param Request $request
-     * @param Category $category
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function update(Request $request, Category $category)
-    {
-        $category->update($request->except('slug'));
 
-        return redirect(route('admin.category.index'));
+    public function update(Request $request, Category $article_category)
+    {
+        $article_category->update($request->except('slug'));
+
+        return redirect(route('admin.article-category.index'));
     }
 
-    /**
-     * @param Category $category
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     * @throws \Exception
-     */
-    public function destroy(Category $category)
-    {
-        $category->delete();
 
-        return redirect(route('admin.category.index'));
+    public function destroy(Category $article_category)
+    {
+        $article_category->delete();
+
+        return redirect(route('admin.article-category.index'));
     }
 }

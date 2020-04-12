@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="container-fluid">
-		<x-admin.breadcrumb title="Создание новости" : parent="Главная" : active="Новости"></x-admin.breadcrumb>
+		<x-admin.breadcrumb title="Создание товара" : parent="Главная" : active="Товары"></x-admin.breadcrumb>
 		<div class="row">
 			<div class="col-md-8">
 				<div class="card shadow mb-4">
@@ -10,9 +10,9 @@
 						<h6 class="m-0 font-weight-bold text-primary">Заполните информацию</h6>
 					</div>
 					<div class="card-body">
-						<form action="{{ route('admin.article.store') }}" method="post">
+						<form action="{{ route('admin.product.store') }}" method="post">
 							@csrf
-							@include('admin.articles.partials.form')
+							@include('admin.products.partials.form')
 							<input type="hidden" name="created_by" value="{{ Auth::id() }}">
 						</form>
 					</div>

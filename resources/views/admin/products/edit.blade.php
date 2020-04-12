@@ -10,10 +10,10 @@
 						<h6 class="m-0 font-weight-bold text-primary">Внесите изменения</h6>
 					</div>
 					<div class="card-body">
-						<form action="{{ route('admin.article.update', $article) }}" method="post">
+						<form action="{{ route('admin.product.update', $product) }}" method="post">
 							<input type="hidden" name="_method" value="put">
 							@csrf
-							@include('admin.articles.partials.form')
+							@include('admin.products.partials.form')
 							<input type="hidden" name="modified_by" value="{{ Auth::id() }}">
 						</form>
 					</div>

@@ -10,7 +10,7 @@
 						<h6 class="m-0 font-weight-bold text-primary">Заполните информацию</h6>
 					</div>
 					<div class="card-body">
-						<form action="{{ route('admin.category.store') }}" method="post">
+						<form action="{{ route('admin.article-category.store') }}" method="post">
 							@csrf
 							@include('admin.categories.partials.form')
 						</form>

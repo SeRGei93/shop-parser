@@ -8,7 +8,7 @@
 		<div class="card shadow mb-4">
 			<div class="card-header py-3 d-sm-flex align-items-center justify-content-between">
 				<h6 class="m-0 font-weight-bold text-primary">Удалите или измените</h6>
-				<a href="{{ route('admin.category.create') }}" class="btn btn-primary btn-icon-split btn-sm float-right">
+				<a href="{{ route('admin.article-category.create') }}" class="btn btn-primary btn-icon-split btn-sm float-right">
 					<span class="icon text-white-50">
 					  <i class="fas fa-plus"></i>
 					</span>
@@ -27,16 +27,16 @@
 						</thead>
 						<tbody>
 
-						@forelse($categories as $key => $category)
+						@forelse($article_categories as $key => $article_category)
 							<tr>
-								<td>{{ $category->title }}</td>
-								<td>{{ $category->published }}</td>
+								<td>{{ $article_category->title }}</td>
+								<td>{{ $article_category->published }}</td>
 								<td>
-									<form action="{{ route('admin.category.destroy', $category) }}" onsubmit="if(confirm('Удалить?')){ return true }else{ return false}" method="post">
+									<form action="{{ route('admin.article-category.destroy', $article_category) }}" onsubmit="if(confirm('Удалить?')){ return true }else{ return false}" method="post">
 										@csrf
 										<input type="hidden" name="_method" value="DELETE">
 
-										<a href="{{ route('admin.category.edit', [$category]) }}" class="btn btn-default"><i class="fas fa-edit"></i></a>
+										<a href="{{ route('admin.article-category.edit', [$article_category]) }}" class="btn btn-default"><i class="fas fa-edit"></i></a>
 										<button type="submit" class="btn"><i class="fas fa-trash"></i></button>
 									</form>
 
@@ -58,7 +58,7 @@
 							<td colspan="3">
 								<nav aria-label="Page navigation example">
 									<ul class="pagination pull-right">
-										{{ $categories->links() }}
+										{{ $article_categories->links() }}
 									</ul>
 								</nav>
 							</td>

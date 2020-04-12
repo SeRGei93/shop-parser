@@ -10,9 +10,9 @@
 						<h6 class="m-0 font-weight-bold text-primary">Заполните информацию</h6>
 					</div>
 					<div class="card-body">
-						<form action="{{ route('admin.article-category.store') }}" method="post">
+						<form action="{{ route('admin.product-category.store') }}" method="post">
 							@csrf
-							@include('admin.categories.partials.form')
+							@include('admin.productCategories.partials.form')
 						</form>
 					</div>
 				</div>
@@ -21,3 +21,13 @@
 
 	</div>
 @endsection
+
+@push('scripts')
+	<script src="{{asset('ckeditor/ckeditor.js')}}"></script>
+	<script>
+        CKEDITOR.replace( 'editor', {
+            filebrowserUploadUrl: "{{route('upload', ['_token' => csrf_token() ])}}",
+            filebrowserUploadMethod: 'form'
+        });
+	</script>
+@endpush

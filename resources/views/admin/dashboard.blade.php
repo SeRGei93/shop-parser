@@ -80,7 +80,7 @@
 				<div class="card shadow mb-4">
 					<div class="card-header py-3 d-sm-flex align-items-center justify-content-between">
 						<h6 class="m-0 font-weight-bold text-primary">Категории</h6>
-						<a href="{{ route('admin.category.create') }}" class="btn btn-primary btn-icon-split btn-sm float-right">
+						<a href="{{ route('admin.article-category.create') }}" class="btn btn-primary btn-icon-split btn-sm float-right">
 							<span class="icon text-white-50">
 							  <i class="fas fa-plus"></i>
 							</span>
@@ -91,7 +91,7 @@
 					<ul class="list-group list-group-flush">
 						@foreach($categories as $category)
 							<li class="list-group-item">
-								<a href="{{ route('admin.category.edit', $category) }}">{{ $category->title }} </a>({{ $category->articles()->count() }})
+								<a href="{{ route('admin.article-category.edit', $category) }}">{{ $category->title }} </a>({{ $category->articles()->count() }})
 							</li>
 						@endforeach
 

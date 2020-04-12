@@ -67,8 +67,8 @@
 			<div id="collapseCategories" class="collapse" aria-labelledby="Categories" data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
 					<h6 class="collapse-header">Управление категориями:</h6>
-					<a class="collapse-item" href="{{ route('admin.category.index') }}">Список категорий</a>
-					<a class="collapse-item" href="{{ route('admin.category.create') }}">Добавить категорию</a>
+					<a class="collapse-item" href="{{ route('admin.article-category.index') }}">Список категорий</a>
+					<a class="collapse-item" href="{{ route('admin.article-category.create') }}">Добавить категорию</a>
 				</div>
 			</div>
 		</li>
@@ -83,6 +83,44 @@
 					<h6 class="collapse-header">Управление новостями:</h6>
 					<a class="collapse-item" href="{{ route('admin.article.index') }}">Список новостей</a>
 					<a class="collapse-item" href="{{ route('admin.article.create') }}">Добавить новость</a>
+				</div>
+			</div>
+		</li>
+
+		<!-- Catalog -->
+
+		<!-- Divider -->
+		<hr class="sidebar-divider">
+
+		<!-- Heading -->
+		<div class="sidebar-heading">
+			Каталог
+		</div>
+
+		<li class="nav-item">
+			<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProductCategories" aria-expanded="true" aria-controls="collapseProductCategories">
+				<i class="fas fa-fw fa-folder"></i>
+				<span>Категории</span>
+			</a>
+			<div id="collapseProductCategories" class="collapse" aria-labelledby="ProductCategories" data-parent="#accordionSidebar">
+				<div class="bg-white py-2 collapse-inner rounded">
+					<h6 class="collapse-header">Управление категориями:</h6>
+					<a class="collapse-item" href="{{ route('admin.product-category.index') }}">Список категорий</a>
+					<a class="collapse-item" href="{{ route('admin.product-category.create') }}">Добавить категорию</a>
+				</div>
+			</div>
+		</li>
+
+		<li class="nav-item">
+			<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProduct" aria-expanded="true" aria-controls="collapseProduct">
+				<i class="fas fa-shopping-cart"></i>
+				<span>Товары</span>
+			</a>
+			<div id="collapseProduct" class="collapse" aria-labelledby="Product" data-parent="#accordionSidebar">
+				<div class="bg-white py-2 collapse-inner rounded">
+					<h6 class="collapse-header">Управление товарами:</h6>
+					<a class="collapse-item" href="{{ route('admin.product.index') }}">Список товаров</a>
+					<a class="collapse-item" href="{{ route('admin.product.create') }}">Добавить товар</a>
 				</div>
 			</div>
 		</li>

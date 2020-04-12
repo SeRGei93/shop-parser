@@ -1,41 +1,43 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Product;
+use App\ProductCategory;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        return view('admin.products.index', [
+            'products' => Product::orderBy('created_at', 'desc')->paginate(10),
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        return view('admin.products.create', [
+            'product' => '',
+            'product_categories' => ProductCategory::with('children')->where('parent_id', 0)->get(),
+            'delimiter' => ''
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $product = Product::create($request->except('categories'));
+
+        //categories
+        if ($request->has('categories')){
+            $product->categories()->attach($request->input('categories'));
+        }
+
+        return redirect()->route('admin.product.index');
     }
 
     /**
@@ -49,37 +51,39 @@ class ProductController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Product $product)
     {
-        //
+        return view('admin.products.edit', [
+            'product' => $product,
+            'product_categories' => ProductCategory::with('children')->where('parent_id', 0)->get(),
+            'delimiter' => ''
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Product $product)
     {
-        //
+        $product->update($request->except('categories'));
+
+        $product->categories()->detach();
+
+        //categories
+        if ($request->has('categories')){
+            $product->categories()->attach($request->input('categories'));
+        }
+
+        return redirect()->route('admin.product.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function destroy(Product $product)
     {
-        //
+        $product->categories()->detach();
+
+        $product->delete();
+
+        return redirect()->route('admin.product.index');
     }
 }

@@ -11,16 +11,24 @@
 						<h6 class="m-0 font-weight-bold text-primary">Внесите изменения</h6>
 					</div>
 					<div class="card-body">
-						<form action="{{ route('admin.article-category.update', $category) }}" method="post">
+						<form action="{{ route('admin.product-category.update', $product_category) }}" method="post">
 							<input type="hidden" name="_method" value="put">
 							@csrf
-							@include('admin.categories.partials.form')
+							@include('admin.productCategories.partials.form')
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-
 	</div>
 @endsection
 
+@push('scripts')
+<script src="{{asset('ckeditor/ckeditor.js')}}"></script>
+<script>
+	CKEDITOR.replace( 'editor', {
+		filebrowserUploadUrl: "{{route('upload', ['_token' => csrf_token() ])}}",
+		filebrowserUploadMethod: 'form'
+	});
+</script>
+@endpush
