@@ -29,6 +29,7 @@ class Article extends Model
         $this->attributes['slug'] = Str::slug( mb_substr($this->title, 0, 40), '-');
     }
 
+
     //Polymorphic relation with categories
     public function categories()
     {

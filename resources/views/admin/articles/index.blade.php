@@ -2,7 +2,11 @@
 
 @section('content')
 	<div class="container-fluid">
+
+
 		<x-admin.breadcrumb title="Список новостей" : parent="Главная" : active="Новости"></x-admin.breadcrumb>
+
+
 
 		<div class="card shadow mb-4">
 			<div class="card-header py-3 d-sm-flex align-items-center justify-content-between">
